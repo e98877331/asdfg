@@ -5,10 +5,10 @@ import ytwhyc.wcm.surfaceview.WCMSurfaceView;
 
 public class ScreenMeasureRatioPolicy {
 	
-//	private final float widthRatio = 768;
-//	private final float heightRatio = 1024;
-	private final float widthRatio = 540;
-	private final float heightRatio = 850;
+	private final float widthRatio = 768;
+	private final float heightRatio = 1024;
+//	private final float widthRatio = 540;
+	//private final float heightRatio = 850;
 	
 	public float originWidth,originHeight;
 	
@@ -17,12 +17,18 @@ public class ScreenMeasureRatioPolicy {
 	
 	
 	
-	public ScreenMeasureRatioPolicy() {
+	public ScreenMeasureRatioPolicy(float screenRatio,boolean isVerticle) {
 		// TODO Auto-generated constructor stub
 		//setting target ratio
-		mRatio = widthRatio/heightRatio;
+//		mRatio = widthRatio/heightRatio;
 		
+	
+		if(isVerticle)
+			mRatio = (float)1/screenRatio;
+		else
+			mRatio = screenRatio;
 		
+			
 	}
 	
 	public void onMeasure(WCMSurfaceView pView,final int pWidthMeasureSpec, final int pHeightMeasureSpec)

@@ -8,7 +8,8 @@ public class Engine {
 	
 	private Engine()
 	{
-		screenPolicy = new ScreenMeasureRatioPolicy();
+		//Todo: should settle outside engine
+		screenPolicy = new ScreenMeasureRatioPolicy(1.6f,true);
 	}
 	
 	
