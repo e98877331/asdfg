@@ -1,10 +1,12 @@
 package ytwhyc.wcm.surfaceview;
 
 import ytwhyc.wcm.engine.Engine;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -17,7 +19,7 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 	private SurfaceHolder mHolder;
 	private SurfaceViewThread mSurfaceViewThread;
 	private Engine mEngine;
-	
+	Paint paint = new Paint();
 	/*
 	 * Constructor
 	 */
@@ -25,6 +27,7 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 		super(context);
 		// TODO Auto-generated constructor stub
 		mHolder = this.getHolder();
+		mHolder.addCallback(this);
 		mEngine = pEngine;
 	}
   
@@ -32,10 +35,13 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 	 * Override functions
 	 */
 	
+	@SuppressLint("WrongCall")
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		// TODO Auto-generated method stub
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+		
+		
 		mEngine.getScreenPolicy().onMeasure(this, widthMeasureSpec, heightMeasureSpec);
 		
 	}
@@ -56,6 +62,7 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 		
 		mSurfaceViewThread = new SurfaceViewThread();
 		mSurfaceViewThread.start();
+		Log.e("hehehe","start");
 	}
 
 	@Override
@@ -77,12 +84,13 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 	
 	private void draw()
 	{
-		Canvas canvas = mHolder.lockCanvas(null);
+		temptest+=5;
+		Canvas canvas = mHolder.lockCanvas();
 		
-		canvas.drawColor(Color.BLUE);
+		canvas.drawColor(Color.GRAY);
 		
-		Paint paint = new Paint();
-		paint.setColor(Color.GRAY);
+		//Paint paint = new Paint();
+		paint.setColor(Color.GREEN);
 		canvas.drawCircle(temptest, 20, 5, paint);
 		
 	    mHolder.unlockCanvasAndPost(canvas);
@@ -93,17 +101,28 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 	 * SurfaceView draw threak
 	 */
 	
-	class SurfaceViewThread extends Thread
-	{
-		
+	class SurfaceViewThread extends Thread {
+		boolean loop = true;
+
 		@Override
 		public void run() {
 			// TODO Auto-generated method stub
 			super.run();
-			temptest++;
-			WCMSurfaceView.this.draw();
+			//Log.e("hehehe","ddfd");
+			while (loop) {
+
+				try {
+					sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+//				
+				WCMSurfaceView.this.draw();
+				Log.e("hehehe","ddfd");
+			}
 		}
-		
+
 	}
 	
 }

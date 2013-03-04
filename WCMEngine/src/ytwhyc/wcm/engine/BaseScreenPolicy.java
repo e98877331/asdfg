@@ -7,7 +7,7 @@ import android.widget.FrameLayout.LayoutParams;
 
 public abstract class BaseScreenPolicy {
 //public int ddf;
-	//public enum layoutParamsType {LAYOUT_CENTER};
+	public enum layoutParamsType {LAYOUT_CENTER};
 	public abstract void onMeasure(WCMSurfaceView pView,final int pWidthMeasureSpec, final int pHeightMeasureSpec);
 	
 	public LayoutParams getLayoutParams(LayoutParamsType type)

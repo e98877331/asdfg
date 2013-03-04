@@ -5,10 +5,9 @@ import ytwhyc.wcm.engine.LayoutParamsType;
 import ytwhyc.wcm.engine.MeasureRatioScreenPolicy;
 import ytwhyc.wcm.surfaceview.WCMSurfaceView;
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.Window;
-import android.widget.FrameLayout.LayoutParams;
 
 public class FightActivity extends Activity {
 
@@ -30,8 +29,8 @@ public class FightActivity extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 	
 		mEngine = new Engine();
-		mEngine.setScreenPolicy(new MeasureRatioScreenPolicy(720,480, false));
-		
+		mEngine.setScreenPolicy(new MeasureRatioScreenPolicy(720,480, true));
+		//setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		setContentView();
 	}
 	
@@ -40,9 +39,8 @@ public class FightActivity extends Activity {
 	 */
 	private void setContentView()
 	{
+	 
 		mSurfaceView = new WCMSurfaceView(this,mEngine);
-		final LayoutParams layoutParams = new LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.MATCH_PARENT);
-		layoutParams.gravity = Gravity.CENTER;
 		this.setContentView(mSurfaceView,mEngine.getScreenPolicy().getLayoutParams(LayoutParamsType.LAYOUT_CENTER));
 	}
 	

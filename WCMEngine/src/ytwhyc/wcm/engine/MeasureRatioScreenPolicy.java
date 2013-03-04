@@ -26,7 +26,7 @@ public class MeasureRatioScreenPolicy extends BaseScreenPolicy{
 		isVerticle = pIsVerticle;
 	    
 		mRatio = (float)virtualWidth/virtualHeight; 
-		if(isVerticle)
+		if(!isVerticle)
 		{
 			//setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 			mRatio = 1/mRatio;
