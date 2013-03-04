@@ -1,33 +1,36 @@
 package ytwhyc.wcm.engine;
 
-import android.view.View.MeasureSpec;
 import ytwhyc.wcm.surfaceview.WCMSurfaceView;
+import android.content.pm.ActivityInfo;
+import android.view.View.MeasureSpec;
 
-public class ScreenMeasureRatioPolicy {
+public class MeasureRatioScreenPolicy extends BaseScreenPolicy{
 	
-	private final float widthRatio = 768;
-	private final float heightRatio = 1024;
-//	private final float widthRatio = 540;
-	//private final float heightRatio = 850;
+	//public static enum layoutParamsType {LAYOUT_CENTER};
 	
+    public final int virtualWidth, virtualHeight;
 	public float originWidth,originHeight;
+	public boolean isVerticle;
 	
 	
-	private final float mRatio;
+    public float mRatio;
 	
 	
 	
-	public ScreenMeasureRatioPolicy(float screenRatio,boolean isVerticle) {
+	public MeasureRatioScreenPolicy(int pVH,int pVW,boolean pIsVerticle) {
 		// TODO Auto-generated constructor stub
 		//setting target ratio
 //		mRatio = widthRatio/heightRatio;
-		
-	
+		virtualWidth = pVW;
+		virtualHeight =pVH;
+		isVerticle = pIsVerticle;
+	    
+		mRatio = (float)virtualWidth/virtualHeight; 
 		if(isVerticle)
-			mRatio = (float)1/screenRatio;
-		else
-			mRatio = screenRatio;
-		
+		{
+			//setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+			mRatio = 1/mRatio;
+		}
 			
 	}
 	

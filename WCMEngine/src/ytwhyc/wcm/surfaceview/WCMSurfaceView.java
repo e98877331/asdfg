@@ -13,18 +13,19 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 	/*
 	 * Field
 	 */
-	private Engine mEngine = Engine.getShareInstance();
+	//private Engine mEngine = Engine.getShareInstance();
 	private SurfaceHolder mHolder;
 	private SurfaceViewThread mSurfaceViewThread;
+	private Engine mEngine;
 	
 	/*
 	 * Constructor
 	 */
-	public WCMSurfaceView(Context context) {
+	public WCMSurfaceView(Context context, Engine pEngine) {
 		super(context);
 		// TODO Auto-generated constructor stub
 		mHolder = this.getHolder();
-		
+		mEngine = pEngine;
 	}
   
 	/*
@@ -35,7 +36,7 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		// TODO Auto-generated method stub
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-		mEngine.screenPolicy.onMeasure(this, widthMeasureSpec, heightMeasureSpec);
+		mEngine.getScreenPolicy().onMeasure(this, widthMeasureSpec, heightMeasureSpec);
 		
 	}
 	

@@ -2,27 +2,34 @@ package ytwhyc.wcm.engine;
 
 public class Engine {
 	
-	private static Engine mInstance;
+//	private static Engine mInstance;
 	
-	public ScreenMeasureRatioPolicy screenPolicy;
+	public BaseScreenPolicy mScreenPolicy;
 	
-	private Engine()
+	public Engine()
 	{
 		//Todo: should settle outside engine
-		screenPolicy = new ScreenMeasureRatioPolicy(1.6f,true);
+		//screenPolicy = new MeasureRatioScreenPolicy(1.6f,true);
 	}
 	
-	
-	
-	
-	public static Engine getShareInstance()
+	public void setScreenPolicy(BaseScreenPolicy pBSP)
 	{
-		if(mInstance == null)
-		{
-			mInstance = new Engine();
-		}
-		return mInstance;
+		mScreenPolicy = pBSP;
 	}
+	
+	public BaseScreenPolicy getScreenPolicy()
+	{
+		return mScreenPolicy;
+	}
+	
+//	public static Engine getShareInstance()
+//	{
+//		if(mInstance == null)
+//		{
+//			mInstance = new Engine();
+//		}
+//		return mInstance;
+//	}
 	
 
 }
