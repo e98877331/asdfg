@@ -9,7 +9,9 @@ public class MeasureRatioScreenPolicy extends BaseScreenPolicy{
 	//public static enum layoutParamsType {LAYOUT_CENTER};
 	
     public final int virtualWidth, virtualHeight;
-	public float originWidth,originHeight;
+	public int actualWidth,actualHeight;
+	private float hscale, wscale;
+	
 	public boolean isVerticle;
 	
 	
@@ -42,17 +44,20 @@ public class MeasureRatioScreenPolicy extends BaseScreenPolicy{
 		final float desiredRatio = this.mRatio;
 		final float realRatio = (float)specWidth / specHeight;
 
-		int measuredWidth;
-		int measuredHeight;
+		//int measuredWidth;
+		//int measuredHeight;
 		if(realRatio < desiredRatio) {
-			measuredWidth = specWidth;
-			measuredHeight = Math.round(measuredWidth / desiredRatio);
+			actualWidth = specWidth;
+			actualHeight = Math.round(actualWidth / desiredRatio);
 		} else {
-			measuredHeight = specHeight;
-			measuredWidth = Math.round(measuredHeight * desiredRatio);
+			actualHeight = specHeight;
+			actualWidth = Math.round(actualHeight * desiredRatio);
 		}
 		
-		pView.setMeasuredDimensionProxy(measuredWidth, measuredHeight);
+		hscale = (float)actualHeight/virtualHeight;
+		wscale = (float)actualWidth/virtualWidth;
+		
+		pView.setMeasuredDimensionProxy(actualWidth, actualHeight);
 	}
 
 }
