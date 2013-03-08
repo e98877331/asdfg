@@ -77,11 +77,11 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 		
 		
 		
-		Bitmap bitmap;
-	    bitmap=((BitmapDrawable)getResources().getDrawable(ytwhyc.wcm.wcmengine.R.drawable.bg_common_5_6_7)).getBitmap();
-		//bitmap = BitmapFactory.decodeResource(getResources(), ytwhyc.wcm.wcmengine.R.drawable.bg_common_5_6_7);
-		
-		testObject = new BitmapEntity(mEngine,bitmap,0,0,480,720);
+//		Bitmap bitmap;
+//	    bitmap=((BitmapDrawable)getResources().getDrawable(ytwhyc.wcm.wcmengine.R.drawable.bg_common_5_6_7)).getBitmap();
+//		//bitmap = BitmapFactory.decodeResource(getResources(), ytwhyc.wcm.wcmengine.R.drawable.bg_common_5_6_7);
+//		
+//		testObject = new BitmapEntity(mEngine,bitmap,0,0,480,720);
 
 	}
 
