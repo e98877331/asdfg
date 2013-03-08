@@ -19,7 +19,7 @@ public class MeasureRatioScreenPolicy extends BaseScreenPolicy{
 	
 	
 	
-	public MeasureRatioScreenPolicy(int pVH,int pVW,boolean pIsVerticle) {
+	public MeasureRatioScreenPolicy(int pVW, int pVH,boolean pIsVerticle) {
 		// TODO Auto-generated constructor stub
 		//setting target ratio
 //		mRatio = widthRatio/heightRatio;

@@ -29,7 +29,7 @@ public class FightActivity extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 	
 		mEngine = new Engine();
-		mEngine.setScreenPolicy(new MeasureRatioScreenPolicy(720,480, true));
+		mEngine.setScreenPolicy(new MeasureRatioScreenPolicy(480,720, true));
 		//setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		setContentView();
 	}

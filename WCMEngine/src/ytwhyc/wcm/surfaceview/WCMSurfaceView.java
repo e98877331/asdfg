@@ -39,16 +39,6 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 		mEngine = pEngine;
 		
 		
-
-		
-
-	    
-		
-
-		
-		
-
-		
 	}
   
 	/*
@@ -60,11 +50,8 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		// TODO Auto-generated method stub
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-		
-		
-		mEngine.getScreenPolicy().onMeasure(this, widthMeasureSpec, heightMeasureSpec);
-		
-		
+			
+		mEngine.getScreenPolicy().onMeasure(this, widthMeasureSpec, heightMeasureSpec);	
 
 	}
 	
@@ -94,7 +81,7 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 	    bitmap=((BitmapDrawable)getResources().getDrawable(ytwhyc.wcm.wcmengine.R.drawable.bg_common_5_6_7)).getBitmap();
 		//bitmap = BitmapFactory.decodeResource(getResources(), ytwhyc.wcm.wcmengine.R.drawable.bg_common_5_6_7);
 		
-		testObject = new BitmapEntity(mEngine,bitmap,12,12,480,720);
+		testObject = new BitmapEntity(mEngine,bitmap,0,0,480,720);
 
 	}
 
@@ -135,12 +122,16 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 		if(mHolder == null)
 			return;
 		Canvas canvas = mHolder.lockCanvas();
-         
+        if(canvas == null)
+        	return;
+		
 		
 		canvas.drawColor(Color.GRAY);
 		 long time = 0;
 
+		 if(canvas!= null && testObject != null)
 		 testObject.draw(canvas);
+		 
 		time = System.currentTimeMillis() - time;
 //		for(int i =0 ;i < 50;i++)
 //		{
@@ -179,7 +170,7 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 			while (loop) {
 
 				try {
-					sleep(500);
+					sleep(20);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

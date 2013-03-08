@@ -15,19 +15,19 @@ public class BitmapEntity implements IEntitiy {
 	
 	public int mPositionX,mPositionY;
 	
-	public BitmapEntity(Engine pEngine,Bitmap pBitmap,int pX, int pY,int pVHeight,int pVWeight )
+	public BitmapEntity(Engine pEngine,Bitmap pBitmap,int pX, int pY,int pVWeight,int pVHeight )
 	{
 		mEngine = pEngine;
-	   mBitmap = getScaledBitmap(pBitmap, pVHeight, pVWeight);
+	   mBitmap = getScaledBitmap(pBitmap,pVWeight, pVHeight);
 	   init(pX,pY);
 	   
 	}
 	
-    public BitmapEntity(Engine pEngine,Resources pResource,int pResID,int pX,int pY,int pVHeight,int pVWeight)
+    public BitmapEntity(Engine pEngine,Resources pResource,int pResID,int pX,int pY,int pVWeight,int pVHeight)
     {
     	mEngine = pEngine;
     	mBitmap = BitmapFactory.decodeResource(pResource, pResID);
-    	mBitmap = getScaledBitmap(mBitmap, pVHeight, pVWeight);
+    	mBitmap = getScaledBitmap(mBitmap,pVWeight, pVHeight);
     	init(pX,pY);
     	
     }
@@ -40,12 +40,12 @@ public class BitmapEntity implements IEntitiy {
     
 	
     
-    private Bitmap getScaledBitmap(Bitmap pBitmap, int pVHeight, int pVWeight)
+    private Bitmap getScaledBitmap(Bitmap pBitmap, int pVWeight,int pVHeight)
     {
     	float hScale = mEngine.getScreenPolicy().getHScale();
     	float wScale = mEngine.getScreenPolicy().getWScale();
     	
-    	return Bitmap.createScaledBitmap(pBitmap, (int)(pVHeight*hScale), (int)(pVWeight*wScale), false);
+    	return Bitmap.createScaledBitmap(pBitmap, (int)(pVWeight*hScale), (int)(pVHeight*wScale), false);
     	
 //	    Matrix matrix = new Matrix();
 //	    // resize the bit map
