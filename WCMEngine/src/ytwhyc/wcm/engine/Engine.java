@@ -1,6 +1,9 @@
 package ytwhyc.wcm.engine;
 
+import java.lang.ref.WeakReference;
+
 import ytwhyc.wcm.entity.Scene;
+import ytwhyc.wcm.wcmengine.activity.WCMActivity;
 import android.graphics.Canvas;
 
 public class Engine {
@@ -12,6 +15,8 @@ public class Engine {
 	 */
 	Scene mScene;
 	
+	WeakReference<WCMActivity> wrContext;
+	
 	
 	public BaseScreenPolicy mScreenPolicy;
 	
@@ -19,10 +24,9 @@ public class Engine {
 	 * Constructors
 	 */
 	
-	public Engine()
+	public Engine(WCMActivity mContext)
 	{
-		//Todo: should settle outside engine
-		//screenPolicy = new MeasureRatioScreenPolicy(1.6f,true);
+      wrContext = new WeakReference<WCMActivity>(mContext);
 	}
 	
 	/*
@@ -52,6 +56,10 @@ public class Engine {
 		}
 	}
 	
+	public void onSurfaceReady()
+	{
+		wrContext.get().onSurfaceReady();
+	}
 //	public static Engine getShareInstance()
 //	{
 //		if(mInstance == null)

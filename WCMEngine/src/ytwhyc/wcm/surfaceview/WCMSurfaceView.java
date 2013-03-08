@@ -97,6 +97,8 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 	public void setMeasuredDimensionProxy(final int pMeasuredWidth,final int pMeasuredHeight)
 	{
 		this.setMeasuredDimension(pMeasuredWidth, pMeasuredHeight);
+		
+		mEngine.onSurfaceReady();
 	}
 	
 //	public Bitmap getResizedBitmap(Bitmap bm, int newHeight, int newWidth)
@@ -118,6 +120,8 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 	
 	private void draw()
 	{
+		long time = System.currentTimeMillis();
+		
 		temptest+=2;
 		if(mHolder == null)
 			return;
@@ -127,12 +131,12 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 		
 		
 		canvas.drawColor(Color.GRAY);
-		 long time = 0;
-
-		 if(canvas!= null && testObject != null)
-		 testObject.draw(canvas);
 		 
-		time = System.currentTimeMillis() - time;
+
+		 if(canvas!= null && mEngine != null)
+		 mEngine.draw(canvas);
+		 
+		
 //		for(int i =0 ;i < 50;i++)
 //		{
 //			
@@ -144,10 +148,10 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 		
 	
 	   
-
+		 time = System.currentTimeMillis() - time;
 		//Paint paint = new Paint();
 		paint.setColor(Color.GREEN);
-		canvas.drawText(Float.toString(temptest) + " instances needs: " +Integer.toString((int)time),200, 400, paint);
+		canvas.drawText("FPS:" +Integer.toString((int)((float)1000/time)),200, 400, paint);
 		
 		canvas.drawCircle(temptest, 20, 5, paint);
 		
@@ -169,13 +173,13 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 			//Log.e("hehehe","ddfd");
 			while (loop) {
 
-				try {
-					sleep(20);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-//				
+//				try {
+//					sleep(20);
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+				
 				WCMSurfaceView.this.draw();
 				//Log.e("hehehe","ddfd");
 			}
