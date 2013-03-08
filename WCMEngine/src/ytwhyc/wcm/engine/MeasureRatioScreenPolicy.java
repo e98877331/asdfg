@@ -10,7 +10,7 @@ public class MeasureRatioScreenPolicy extends BaseScreenPolicy{
 	
     public final int virtualWidth, virtualHeight;
 	public int actualWidth,actualHeight;
-	private float hscale, wscale;
+	//private float hscale, wscale;
 	
 	public boolean isVerticle;
 	

@@ -1,6 +1,7 @@
 package ytwhyc.wcm.surfaceview;
 
 import ytwhyc.wcm.engine.Engine;
+import ytwhyc.wcm.entity.BitmapEntity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -24,6 +25,9 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 	private SurfaceViewThread mSurfaceViewThread;
 	private Engine mEngine;
 	Paint paint = new Paint();
+	
+	
+	BitmapEntity testObject;
 	/*
 	 * Constructor
 	 */
@@ -33,6 +37,18 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 		mHolder = this.getHolder();
 		mHolder.addCallback(this);
 		mEngine = pEngine;
+		
+		
+
+		
+
+	    
+		
+
+		
+		
+
+		
 	}
   
 	/*
@@ -48,6 +64,8 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 		
 		mEngine.getScreenPolicy().onMeasure(this, widthMeasureSpec, heightMeasureSpec);
 		
+		
+
 	}
 	
 	/*
@@ -64,9 +82,20 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 	public void surfaceCreated(SurfaceHolder holder) {
 		// TODO Auto-generated method stub
 		
+		
 		mSurfaceViewThread = new SurfaceViewThread();
 		mSurfaceViewThread.start();
 		Log.e("hehehe","start");
+		
+		
+		
+		
+		Bitmap bitmap;
+	    bitmap=((BitmapDrawable)getResources().getDrawable(ytwhyc.wcm.wcmengine.R.drawable.bg_common_5_6_7)).getBitmap();
+		//bitmap = BitmapFactory.decodeResource(getResources(), ytwhyc.wcm.wcmengine.R.drawable.bg_common_5_6_7);
+		
+		testObject = new BitmapEntity(mEngine,bitmap,12,12,480,720);
+
 	}
 
 	@Override
@@ -83,21 +112,21 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 		this.setMeasuredDimension(pMeasuredWidth, pMeasuredHeight);
 	}
 	
-	public Bitmap getResizedBitmap(Bitmap bm, int newHeight, int newWidth)
-	{
-	    int width = bm.getWidth();
-	    int height = bm.getHeight();
-	    float scaleWidth = ((float) newWidth) / width;
-	    float scaleHeight = ((float) newHeight) / height;
-	    // create a matrix for the manipulation
-	    Matrix matrix = new Matrix();
-	    // resize the bit map
-	    matrix.postScale(scaleWidth, scaleHeight);
-	    // recreate the new Bitmap
-	    Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
-	    return resizedBitmap;
-	}
-	
+//	public Bitmap getResizedBitmap(Bitmap bm, int newHeight, int newWidth)
+//	{
+//	    int width = bm.getWidth();
+//	    int height = bm.getHeight();
+//	    float scaleWidth = ((float) newWidth) / width;
+//	    float scaleHeight = ((float) newHeight) / height;
+//	    // create a matrix for the manipulation
+//	    Matrix matrix = new Matrix();
+//	    // resize the bit map
+//	    matrix.postScale(scaleWidth, scaleHeight);
+//	    // recreate the new Bitmap
+//	    Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
+//	    return resizedBitmap;
+//	}
+//	
 	float temptest = 0;
 	
 	private void draw()
@@ -110,25 +139,17 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 		
 		canvas.drawColor(Color.GRAY);
 		 long time = 0;
-		Bitmap bitmap;
-	    bitmap=((BitmapDrawable)getResources().getDrawable(ytwhyc.wcm.wcmengine.R.drawable.bg_common_5_6_7)).getBitmap();
-		//bitmap = BitmapFactory.decodeResource(getResources(), ytwhyc.wcm.wcmengine.R.drawable.bg_common_5_6_7);
-		
-		
-	    time = System.currentTimeMillis();
-	    //Bitmap bm2 = Bitmap.createScaledBitmap(bitmap, 480, 720, false);
-	    Bitmap bm2 =getResizedBitmap(bitmap,720,480);
-	    
-	    
+
+		 testObject.draw(canvas);
 		time = System.currentTimeMillis() - time;
-		for(int i =0 ;i < 50;i++)
-		{
-			
-		canvas.drawBitmap(bm2, 50, 50+2*i, paint);
-		//canvas.
-		
-		
-		}
+//		for(int i =0 ;i < 50;i++)
+//		{
+//			
+//		//canvas.drawBitmap(bm2, 50, 50+2*i, paint);
+//		//canvas.
+//		
+//		
+//		}
 		
 	
 	   

@@ -7,6 +7,19 @@ import android.widget.FrameLayout.LayoutParams;
 
 public abstract class BaseScreenPolicy {
 //public int ddf;
+	public float hscale, wscale;
+	
+	public float getHScale()
+	{
+		return hscale;
+	}
+	
+	public float getWScale()
+	{
+		return wscale;
+	}
+	
+	
 	public enum layoutParamsType {LAYOUT_CENTER};
 	public abstract void onMeasure(WCMSurfaceView pView,final int pWidthMeasureSpec, final int pHeightMeasureSpec);
 	
