@@ -3,8 +3,10 @@ package ytwhyc.wcm.engine;
 import java.lang.ref.WeakReference;
 
 import ytwhyc.wcm.entity.Scene;
+import ytwhyc.wcm.surfaceview.WCMSurfaceView;
 import ytwhyc.wcm.wcmengine.activity.WCMActivity;
 import android.graphics.Canvas;
+import android.provider.Settings.System;
 
 public class Engine {
 	
@@ -60,6 +62,9 @@ public class Engine {
 	{
 		wrContext.get().onSurfaceReady();
 	}
+	
+	
+	
 //	public static Engine getShareInstance()
 //	{
 //		if(mInstance == null)
@@ -69,5 +74,31 @@ public class Engine {
 //		return mInstance;
 //	}
 	
+	class UpdateThread extends Thread {
+		boolean loop = true;
+long lastTick;
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			super.run();
+			//Log.e("hehehe","ddfd");
+			
+			lastTick = java.lang.System.currentTimeMillis();
+			while (loop) {
 
-}
+				lastTick = java.lang.System.currentTimeMillis() - lastTick;
+//				try {
+//					sleep(20);
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+				mScene.updateAll(timePassBy);
+				//Log.e("hehehe","ddfd");
+			}
+		}
+
+	}
+	
+
+}//end of engine

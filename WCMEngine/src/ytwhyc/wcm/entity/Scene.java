@@ -50,6 +50,16 @@ public class Scene extends BitmapEntity {
 		
 		
 	}
+	
+	public void updateAll(int timePassBy)
+	{
+		update(timePassBy);
+		for(int i= 0;i < childs.size();i++)
+		{
+			childs.get(i).update(timePassBy);
+		}
+		
+	}
 
 	@Override
 	public void update(int timePassBy) {
