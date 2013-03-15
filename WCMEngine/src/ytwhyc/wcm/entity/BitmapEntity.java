@@ -51,6 +51,9 @@ public class BitmapEntity implements IEntitiy {
 	@Override
 	public void draw(Canvas pCanvas) {
 		// TODO Auto-generated method stub
+	    if(mWCMBitmap == null)
+	    	return;
+		
 		pCanvas.drawBitmap(mWCMBitmap.getBitmap(), mPositionX*mEngine.getScreenPolicy().wscale, mPositionY*mEngine.getScreenPolicy().hscale, null);   
 		//pCanvas.drawbit
 

@@ -15,6 +15,7 @@ public class Engine {
 	 */
 	Scene mScene;
 	
+	UpdateThread mUpdateThread;
 	WeakReference<WCMActivity> wrContext;
 	
 	
@@ -62,6 +63,9 @@ public class Engine {
 		wrContext.get().onSurfaceReady();
 		wrContext.get().onResourceCreate();
 		
+		mUpdateThread = new UpdateThread(30);
+		mUpdateThread.start();
+		
 	}
 	
 	
@@ -83,6 +87,7 @@ public class Engine {
         
         public UpdateThread(long tickInterval)
         {
+        	super();
         	tickInterval = 20;
         }
         

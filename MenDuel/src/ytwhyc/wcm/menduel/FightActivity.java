@@ -14,6 +14,8 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.AudioRecord.OnRecordPositionUpdateListener;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.Window;
 
 public class FightActivity extends WCMActivity{
@@ -25,6 +27,8 @@ public class FightActivity extends WCMActivity{
 	Engine mEngine;
 	WCMSurfaceView mSurfaceView;	
 	
+	
+	Enemy mEnemy;
 	/*
 	 * Override Methods
 	 */
@@ -65,20 +69,30 @@ public class FightActivity extends WCMActivity{
 		Scene bg = new Scene(mEngine, wb, 0,0);
 	    
 		bitmap=((BitmapDrawable)getResources().getDrawable(R.drawable.ic_launcher)).getBitmap();
-		WCMBitmap oBitmap = new WCMBitmap(mEngine, bitmap, 50, 50);
+		WCMBitmap oBitmap = new WCMBitmap(mEngine, bitmap, 200, 300);
 		
 		//BitmapEntity testObject = new BitmapEntity(mEngine,bitmap,50,50,50,50);
 		
-		ArrayList<BitmapEntity> tests = new ArrayList<BitmapEntity>();
-		
-		for(int i  = 0 ;i < 10000 ;i ++)
-		{
-			tests.add(new BitmapEntity(mEngine, oBitmap, 10*i, 20*i));
-			tests.add(new BitmapEntity(mEngine, oBitmap, 10*i,680-(20*i)));
-			bg.addChild(tests.get(i));	
-		}
-		
+//		ArrayList<BitmapEntity> tests = new ArrayList<BitmapEntity>();
+//		
+//		for(int i  = 0 ;i < 10000 ;i ++)
+//		{
+//			tests.add(new BitmapEntity(mEngine, oBitmap, 480, 20*i));
+//			tests.add(new BitmapEntity(mEngine, oBitmap, 10*i,680-(20*i)));
+//			bg.addChild(tests.get(i));	
+//		}
 	
+		
+		
+		
+		mEnemy = new Enemy(mEngine, oBitmap, 240, 360);
+		
+		 bitmap=((BitmapDrawable)getResources().getDrawable(R.drawable.bg_common_5_6_7)).getBitmap();
+			WCMBitmap ohit = new WCMBitmap(mEngine, bitmap, 200, 300);
+		mEnemy.setHurtBitmap(ohit);
+		//mEnemy.setHurtBitmap(pB);
+		
+	bg.addChild(mEnemy);
 		mEngine.setScene(bg);
 		
 	}
@@ -86,6 +100,19 @@ public class FightActivity extends WCMActivity{
 	/*
 	 * Methods
 	 */
+	
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		// TODO Auto-generated method stub
+		if(event.getAction() == MotionEvent.ACTION_DOWN)
+		{
+			mEnemy.onHit();
+			Log.e("onTOuch", "onTOuch");
+		}
+		
+		return super.onTouchEvent(event);
+	}
+	
 	private void setContentView()
 	{
 	 
