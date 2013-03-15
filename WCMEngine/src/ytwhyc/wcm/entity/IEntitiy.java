@@ -5,6 +5,6 @@ import android.graphics.Canvas;
 public interface IEntitiy {
 
 	public void draw(Canvas pCanvas);
-	public void update(int timePassBy);
+	public void update(long timePassBy);
 	
 }

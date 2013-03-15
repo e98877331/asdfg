@@ -3,10 +3,8 @@ package ytwhyc.wcm.engine;
 import java.lang.ref.WeakReference;
 
 import ytwhyc.wcm.entity.Scene;
-import ytwhyc.wcm.surfaceview.WCMSurfaceView;
 import ytwhyc.wcm.wcmengine.activity.WCMActivity;
 import android.graphics.Canvas;
-import android.provider.Settings.System;
 
 public class Engine {
 	
@@ -61,6 +59,7 @@ public class Engine {
 	public void onSurfaceReady()
 	{
 		wrContext.get().onSurfaceReady();
+		
 	}
 	
 	
@@ -76,7 +75,16 @@ public class Engine {
 	
 	class UpdateThread extends Thread {
 		boolean loop = true;
-long lastTick;
+        long lastTick;
+        long timePassBy = 0;
+        long tickInterval;
+        
+        public UpdateThread(long tickInterval)
+        {
+        	tickInterval = 20;
+        }
+        
+        
 		@Override
 		public void run() {
 			// TODO Auto-generated method stub
@@ -86,14 +94,21 @@ long lastTick;
 			lastTick = java.lang.System.currentTimeMillis();
 			while (loop) {
 
-				lastTick = java.lang.System.currentTimeMillis() - lastTick;
+				timePassBy += (java.lang.System.currentTimeMillis() - lastTick);
+				if(timePassBy >= tickInterval)
+				{
+					mScene.updateAll(timePassBy);
+					timePassBy -= tickInterval;
+					
+				}
+				
 //				try {
 //					sleep(20);
 //				} catch (InterruptedException e) {
 //					// TODO Auto-generated catch block
 //					e.printStackTrace();
 //				}
-				mScene.updateAll(timePassBy);
+				
 				//Log.e("hehehe","ddfd");
 			}
 		}

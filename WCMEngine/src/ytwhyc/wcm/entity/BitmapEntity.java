@@ -57,7 +57,7 @@ public class BitmapEntity implements IEntitiy {
 	}
 
 	@Override
-	public void update(int timePassBy) {
+	public void update(long timePassBy) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -6,7 +6,6 @@ import java.util.List;
 import ytwhyc.wcm.engine.Engine;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.widget.ArrayAdapter;
 
 public class Scene extends BitmapEntity {
 
@@ -51,7 +50,7 @@ public class Scene extends BitmapEntity {
 		
 	}
 	
-	public void updateAll(int timePassBy)
+	public void updateAll(long timePassBy)
 	{
 		update(timePassBy);
 		for(int i= 0;i < childs.size();i++)
@@ -62,7 +61,7 @@ public class Scene extends BitmapEntity {
 	}
 
 	@Override
-	public void update(int timePassBy) {
+	public void update(long timePassBy) {
 		// TODO Auto-generated method stub
 		super.update(timePassBy);
 	}

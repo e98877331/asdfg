@@ -1,7 +1,6 @@
 package ytwhyc.wcm.engine;
 
 import ytwhyc.wcm.surfaceview.WCMSurfaceView;
-import android.content.pm.ActivityInfo;
 import android.view.View.MeasureSpec;
 
 public class MeasureRatioScreenPolicy extends BaseScreenPolicy{
