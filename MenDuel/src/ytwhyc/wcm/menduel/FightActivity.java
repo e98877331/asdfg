@@ -9,8 +9,10 @@ import ytwhyc.wcm.entity.BitmapEntity;
 import ytwhyc.wcm.entity.Scene;
 import ytwhyc.wcm.surfaceview.WCMSurfaceView;
 import ytwhyc.wcm.wcmengine.activity.WCMActivity;
+import ytwhyc.wcm.wcmengine.bitmap.WCMBitmap;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.AudioRecord.OnRecordPositionUpdateListener;
 import android.os.Bundle;
 import android.view.Window;
 
@@ -44,23 +46,35 @@ public class FightActivity extends WCMActivity{
 	}
 	
 	@Override
+	public void onResourceCreate() {
+		// TODO Auto-generated method stub
+		super.onResourceCreate();
+		
+		
+	}
+	
+	@Override
 	public void onSurfaceReady() {
 		// TODO Auto-generated method stub
 		
 		Bitmap bitmap;
 	    bitmap=((BitmapDrawable)getResources().getDrawable(R.drawable.bg_common_5_6_7)).getBitmap();
+	    
+	    WCMBitmap wb = new WCMBitmap(mEngine, bitmap, 480, 720);
 		//bitmap = BitmapFactory.decodeResource(getResources(), ytwhyc.wcm.wcmengine.R.drawable.bg_common_5_6_7);
-		Scene bg = new Scene(mEngine, bitmap, 0, 0, 480, 720);
+		Scene bg = new Scene(mEngine, wb, 0,0);
 	    
 		bitmap=((BitmapDrawable)getResources().getDrawable(R.drawable.ic_launcher)).getBitmap();
+		WCMBitmap oBitmap = new WCMBitmap(mEngine, bitmap, 50, 50);
+		
 		//BitmapEntity testObject = new BitmapEntity(mEngine,bitmap,50,50,50,50);
 		
 		ArrayList<BitmapEntity> tests = new ArrayList<BitmapEntity>();
 		
-		for(int i  = 0 ;i < 100 ;i ++)
+		for(int i  = 0 ;i < 10000 ;i ++)
 		{
-			tests.add(new BitmapEntity(mEngine, bitmap, 10*i, 20*i, 50+2*i, 50+2*i));
-			tests.add(new BitmapEntity(mEngine, bitmap, 10*i,680-(20*i), 50+2*i, 50+2*i));
+			tests.add(new BitmapEntity(mEngine, oBitmap, 10*i, 20*i));
+			tests.add(new BitmapEntity(mEngine, oBitmap, 10*i,680-(20*i)));
 			bg.addChild(tests.get(i));	
 		}
 		

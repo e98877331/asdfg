@@ -1,10 +1,12 @@
 package ytwhyc.wcm.entity;
 
 import ytwhyc.wcm.engine.Engine;
+import ytwhyc.wcm.wcmengine.bitmap.WCMBitmap;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 
 
 public class BitmapEntity implements IEntitiy {
@@ -15,35 +17,33 @@ public class BitmapEntity implements IEntitiy {
 	 */
 	protected Engine mEngine;
 	
-	protected Bitmap mBitmap;
+	protected WCMBitmap mWCMBitmap;
 	
 	protected int mPositionX,mPositionY;
-	protected int mVirtualWidth,mVirtualHeight;
-	
-	protected float mScaleX,mScaleY;
 	
 	/*
 	 * Constructor
 	 */
 	
-	public BitmapEntity(Engine pEngine,Bitmap pBitmap,int pX, int pY,int pVWidth,int pVHeight )
+	public BitmapEntity(Engine pEngine,WCMBitmap pBitmap,int pX, int pY)
 	{
 		mEngine = pEngine;
-		initCoordinateData(pX,pY,pVWidth,pVHeight);
+		mPositionX = pX;
+		mPositionY = pY;
 	   
-		mBitmap = getScaledBitmap(pBitmap,pVWidth, pVHeight);
+		mWCMBitmap = pBitmap;
 	   
 	}
 	
-    public BitmapEntity(Engine pEngine,Resources pResource,int pResID,int pX,int pY,int pVWidth,int pVHeight)
-    {
-    	mEngine = pEngine;
-    	initCoordinateData(pX,pY,pVWidth,pVHeight);
-
-    	mBitmap = BitmapFactory.decodeResource(pResource, pResID);
-    	mBitmap = getScaledBitmap(mBitmap,pVWidth, pVHeight);
-    	
-    }
+//    public BitmapEntity(Engine pEngine,Resources pResource,int pResID,int pX,int pY,int pVWidth,int pVHeight)
+//    {
+//    	mEngine = pEngine;
+//    	initCoordinateData(pX,pY,pVWidth,pVHeight);
+//
+//    	mBitmap = BitmapFactory.decodeResource(pResource, pResID);
+//    	mBitmap = getScaledBitmap(mBitmap,pVWidth, pVHeight);
+//    	
+//    }
     /*
      * Override methods
      */
@@ -51,8 +51,9 @@ public class BitmapEntity implements IEntitiy {
 	@Override
 	public void draw(Canvas pCanvas) {
 		// TODO Auto-generated method stub
-		pCanvas.drawBitmap(mBitmap, mPositionX*mScaleX, mPositionY*mScaleY, null);                                                                                                                                       
-		
+		pCanvas.drawBitmap(mWCMBitmap.getBitmap(), mPositionX*mEngine.getScreenPolicy().wscale, mPositionY*mEngine.getScreenPolicy().hscale, null);   
+		//pCanvas.drawbit
+
 		
 	}
 
@@ -67,37 +68,17 @@ public class BitmapEntity implements IEntitiy {
 	/*
 	 * Functions
 	 */
-    public void initCoordinateData(int pPositionX,int pPositionY,int pW, int pH)
-    {
-    	mPositionX = pPositionX;
-    	mPositionY =pPositionY;
-    	mVirtualWidth = pW;
-    	mVirtualHeight = pH;
-    	
-    	 mScaleX = mEngine.getScreenPolicy().getWScale();
-    	 mScaleY = mEngine.getScreenPolicy().getHScale();
-    }
-    
-	
-    
-    private Bitmap getScaledBitmap(Bitmap pBitmap, int pVWeight,int pVHeight)
-    {
-
-    	
-    	return Bitmap.createScaledBitmap(pBitmap, (int)(pVWeight*mScaleX), (int)(pVHeight*mScaleY), false);
-    	
-    }
     
     
     public int getWidth()
     {
-    	return mVirtualWidth;
+    	return mWCMBitmap.getWidth();
     }
     
     public int getHeight()
     {
 
-    	return mVirtualHeight;
+    	return mWCMBitmap.getHeight();
     }
 	
     

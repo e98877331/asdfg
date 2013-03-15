@@ -8,5 +8,10 @@ public class WCMActivity extends Activity{
 	{
 		
 	}
+	
+	public void onResourceCreate()
+	{
+		
+	}
 
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ytwhyc.wcm.engine.Engine;
+import ytwhyc.wcm.wcmengine.bitmap.WCMBitmap;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
@@ -20,9 +21,9 @@ public class Scene extends BitmapEntity {
 	/*
 	 * Constructor
 	 */
-	public Scene(Engine pEngine, Bitmap pBitmap, int pX, int pY, int pVWeight,int pVHeight
+	public Scene(Engine pEngine, WCMBitmap pWCMBitmap, int pX, int pY
 			) {
-		super(pEngine, pBitmap, pX, pY, pVWeight,pVHeight );
+		super(pEngine, pWCMBitmap, pX, pY);
 		// TODO Auto-generated constructor stub
 		
 		childs = new ArrayList<BitmapEntity>();
@@ -39,7 +40,7 @@ public class Scene extends BitmapEntity {
 		//super.draw(pCanvas);
 		
 		//draw self
-		pCanvas.drawBitmap(mBitmap, mPositionX, mPositionY, null);
+		pCanvas.drawBitmap(mWCMBitmap.getBitmap(), mPositionX, mPositionY, null);
 		
 		//draw childs
 		for(int i = 0 ; i< childs.size(); i++)

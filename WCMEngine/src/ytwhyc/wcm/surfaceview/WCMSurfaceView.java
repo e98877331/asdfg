@@ -98,6 +98,7 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 	{
 		this.setMeasuredDimension(pMeasuredWidth, pMeasuredHeight);
 		
+		
 		mEngine.onSurfaceReady();
 	}
 	
