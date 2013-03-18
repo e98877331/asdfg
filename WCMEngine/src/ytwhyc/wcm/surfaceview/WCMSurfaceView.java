@@ -22,7 +22,6 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 	 */
 	//private Engine mEngine = Engine.getShareInstance();
 	private SurfaceHolder mHolder;
-	private SurfaceViewThread mSurfaceViewThread;
 	private Engine mEngine;
 	Paint paint = new Paint();
 	
@@ -37,7 +36,8 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 		mHolder = this.getHolder();
 		mHolder.addCallback(this);
 		mEngine = pEngine;
-		
+	
+		mEngine.setDrawingView(this);
 		
 	}
   
@@ -68,15 +68,8 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		// TODO Auto-generated method stub
-		
-		
-		mSurfaceViewThread = new SurfaceViewThread();
-		mSurfaceViewThread.start();
-		Log.e("hehehe","start");
-		
-		
-		
-		
+		mEngine.onSurfaceReady();
+
 //		Bitmap bitmap;
 //	    bitmap=((BitmapDrawable)getResources().getDrawable(ytwhyc.wcm.wcmengine.R.drawable.bg_common_5_6_7)).getBitmap();
 //		//bitmap = BitmapFactory.decodeResource(getResources(), ytwhyc.wcm.wcmengine.R.drawable.bg_common_5_6_7);
@@ -99,7 +92,7 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 		this.setMeasuredDimension(pMeasuredWidth, pMeasuredHeight);
 		
 		
-		mEngine.onSurfaceReady();
+		
 	}
 	
 //	public Bitmap getResizedBitmap(Bitmap bm, int newHeight, int newWidth)
@@ -119,7 +112,7 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 //	
 	float temptest = 0;
 	
-	private void draw()
+	public void draw()
 	{
 		long time = System.currentTimeMillis();
 		
@@ -155,37 +148,12 @@ public class WCMSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
 		canvas.drawText("FPS:" +Integer.toString((int)((float)1000/time)),200, 400, paint);
 		
 		canvas.drawCircle(temptest, 20, 5, paint);
+		if(temptest > 500)
+			temptest = 0;
 		
 	    mHolder.unlockCanvasAndPost(canvas);
 	}
 	
 	
-	/*
-	 * SurfaceView draw threak
-	 */
-	
-	class SurfaceViewThread extends Thread {
-		boolean loop = true;
-
-		@Override
-		public void run() {
-			// TODO Auto-generated method stub
-			super.run();
-			//Log.e("hehehe","ddfd");
-			while (loop) {
-
-//				try {
-//					sleep(20);
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-				
-				WCMSurfaceView.this.draw();
-				//Log.e("hehehe","ddfd");
-			}
-		}
-
-	}
 	
 }

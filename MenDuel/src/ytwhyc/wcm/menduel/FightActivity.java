@@ -43,7 +43,7 @@ public class FightActivity extends WCMActivity{
 		mEngine.setScreenPolicy(new MeasureRatioScreenPolicy(480,720, true));
 		//setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		setContentView();
-		
+//		
 
 		
 
@@ -55,6 +55,21 @@ public class FightActivity extends WCMActivity{
 		super.onResourceCreate();
 		
 		
+	}
+	
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		
+		mEngine.onPause();
+	}
+	
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		mEngine.onPause();
 	}
 	
 	@Override
@@ -107,7 +122,7 @@ public class FightActivity extends WCMActivity{
 		if(event.getAction() == MotionEvent.ACTION_DOWN)
 		{
 			mEnemy.onHit();
-			Log.e("onTOuch", "onTOuch");
+			//mEngine.onPause();
 		}
 		
 		return super.onTouchEvent(event);

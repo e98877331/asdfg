@@ -3,8 +3,10 @@ package ytwhyc.wcm.engine;
 import java.lang.ref.WeakReference;
 
 import ytwhyc.wcm.entity.Scene;
+import ytwhyc.wcm.surfaceview.WCMSurfaceView;
 import ytwhyc.wcm.wcmengine.activity.WCMActivity;
 import android.graphics.Canvas;
+import android.util.Log;
 
 public class Engine {
 	
@@ -17,6 +19,7 @@ public class Engine {
 	
 	UpdateThread mUpdateThread;
 	WeakReference<WCMActivity> wrContext;
+	WCMSurfaceView mSurfaceView;
 	
 	
 	public BaseScreenPolicy mScreenPolicy;
@@ -33,6 +36,10 @@ public class Engine {
 	/*
 	 * Functions
 	 */
+	public void setDrawingView(WCMSurfaceView pView)
+	{
+       mSurfaceView = pView;
+	}
 	
 	public void setScreenPolicy(BaseScreenPolicy pBSP)
 	{
@@ -42,6 +49,11 @@ public class Engine {
 	public BaseScreenPolicy getScreenPolicy()
 	{
 		return mScreenPolicy;
+	}
+	
+	public void onPause()
+	{
+		mUpdateThread.pause();
 	}
 	
     public void setScene(Scene pScene)
@@ -63,9 +75,9 @@ public class Engine {
 		wrContext.get().onSurfaceReady();
 		wrContext.get().onResourceCreate();
 		
-		mUpdateThread = new UpdateThread(30);
+		mUpdateThread = new UpdateThread(10000);
 		mUpdateThread.start();
-		
+		//Log.e("thread","Thread Start!!");
 	}
 	
 	
@@ -85,12 +97,16 @@ public class Engine {
         long timePassBy = 0;
         long tickInterval;
         
-        public UpdateThread(long tickInterval)
+        public UpdateThread(long pTickInterval)
         {
         	super();
-        	tickInterval = 20;
+        	tickInterval = pTickInterval;
         }
         
+        public void pause()
+        {
+        	loop = false;
+        }
         
 		@Override
 		public void run() {
@@ -101,20 +117,28 @@ public class Engine {
 			lastTick = java.lang.System.currentTimeMillis();
 			while (loop) {
 
-				timePassBy += (java.lang.System.currentTimeMillis() - lastTick);
-				if(timePassBy >= tickInterval)
-				{
-					mScene.updateAll(timePassBy);
-					timePassBy -= tickInterval;
+				try {
+					timePassBy += (java.lang.System.currentTimeMillis() - lastTick);
 					
+					int whileCounter = 0;
+					while(timePassBy >= tickInterval &&loop)
+					{
+						
+						whileCounter++;
+						mScene.updateAll(timePassBy);
+						timePassBy -= tickInterval;
+					
+					}
+					Log.e("thread",Long.toString(whileCounter));
+					whileCounter = 0;
+					mSurfaceView.draw();
+					
+
+					//sleep(0);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				
-//				try {
-//					sleep(20);
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
 				
 				//Log.e("hehehe","ddfd");
 			}
