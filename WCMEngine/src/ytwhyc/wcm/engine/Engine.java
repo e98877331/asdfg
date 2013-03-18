@@ -75,7 +75,7 @@ public class Engine {
 		wrContext.get().onSurfaceReady();
 		wrContext.get().onResourceCreate();
 		
-		mUpdateThread = new UpdateThread(10000);
+		mUpdateThread = new UpdateThread(1000);
 		mUpdateThread.start();
 		//Log.e("thread","Thread Start!!");
 	}
@@ -118,18 +118,19 @@ public class Engine {
 			while (loop) {
 
 				try {
-					timePassBy += (java.lang.System.currentTimeMillis() - lastTick);
-					
+					long currentTime = java.lang.System.currentTimeMillis();
+					timePassBy += (currentTime - lastTick);
+					lastTick = currentTime;
 					int whileCounter = 0;
 					while(timePassBy >= tickInterval &&loop)
 					{
-						
+						Log.e("thread",Long.toString(whileCounter) + " " + Long.toString(timePassBy));
 						whileCounter++;
 						mScene.updateAll(timePassBy);
 						timePassBy -= tickInterval;
 					
 					}
-					Log.e("thread",Long.toString(whileCounter));
+					
 					whileCounter = 0;
 					mSurfaceView.draw();
 					
