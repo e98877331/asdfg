@@ -61,11 +61,6 @@ public class Scene extends BitmapEntity {
 		
 	}
 
-	@Override
-	public void update(long timePassBy) {
-		// TODO Auto-generated method stub
-		super.update(timePassBy);
-	}
 
 	/*
      *  Functions

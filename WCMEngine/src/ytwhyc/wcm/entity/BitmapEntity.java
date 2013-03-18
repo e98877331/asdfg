@@ -9,7 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 
 
-public class BitmapEntity implements IEntitiy {
+public class BitmapEntity extends AEntitiy {
 
 	
 	/*
@@ -60,11 +60,7 @@ public class BitmapEntity implements IEntitiy {
 		
 	}
 
-	@Override
-	public void update(long timePassBy) {
-		// TODO Auto-generated method stub
-		
-	}
+
     
     
 	

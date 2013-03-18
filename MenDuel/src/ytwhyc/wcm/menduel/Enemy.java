@@ -1,11 +1,10 @@
 package ytwhyc.wcm.menduel;
 
-import java.util.ArrayList;
-
-import android.graphics.Bitmap;
 import ytwhyc.wcm.engine.Engine;
 import ytwhyc.wcm.entity.Sprite;
 import ytwhyc.wcm.wcmengine.bitmap.WCMBitmap;
+import ytwhyc.wcm.wcmengine.updater.Updater;
+import android.util.Log;
 
 public class Enemy extends Sprite {
 
@@ -23,6 +22,36 @@ WCMBitmap mNormalBitmap;
 		hitting = false;
 		
 		mNormalBitmap = pWCMBitmap;
+		
+		this.setUpdater(new Updater(0.01f) {
+			int diff = -4;
+			@Override
+			public void doUpdate() {
+				// TODO Auto-generated method stub
+
+				mPositionX += diff;
+				mPositionY += diff;
+				if( mPositionX < 0 || mPositionX > 400)
+				{
+					diff = -diff;
+				}
+	//Log.e("hddd",Integer.toString(mPositionX) + "  " + Integer.toString(diff));
+				
+				if(hitting)
+				{
+					tickCounter++;
+				    if(tickCounter  == 10)
+				    {
+				    	hitting = false;
+				    	mWCMBitmap = mNormalBitmap;
+				    	tickCounter = 0;
+				    }
+					
+				}
+				
+				
+			}
+		});
 	}
 	
 	public void setHurtBitmap(WCMBitmap pB)
@@ -36,24 +65,6 @@ WCMBitmap mNormalBitmap;
     	mWCMBitmap = mHurtBitmap;
     }
 	
-    @Override
-    public void update(long timePassBy) {
-    	// TODO Auto-generated method stub
-    	super.update(timePassBy);
-    	
-    	if(hitting)
-    	{
-           tickCounter++;
-           if(tickCounter > 1)
-           {
-        	   mWCMBitmap =mNormalBitmap;
-        	   hitting = false;
-        	   tickCounter = 0;
-           }
-   
-        	   
-    	}
-    }
     
     
 
