@@ -1,26 +1,24 @@
 package ytwhyc.wcm.menduel;
 
-import java.util.ArrayList;
-
 import ytwhyc.wcm.engine.Engine;
 import ytwhyc.wcm.engine.LayoutParamsType;
 import ytwhyc.wcm.engine.MeasureRatioScreenPolicy;
-import ytwhyc.wcm.entity.BitmapEntity;
 import ytwhyc.wcm.entity.Scene;
 import ytwhyc.wcm.surfaceview.WCMSurfaceView;
 import ytwhyc.wcm.wcmengine.activity.WCMActivity;
 import ytwhyc.wcm.wcmengine.bitmap.WCMBitmap;
 import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
-import android.media.AudioRecord.OnRecordPositionUpdateListener;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.Window;
 
 public class FightActivity extends WCMActivity{
 
-	
+	final int virtualWidth = 540;
+	final int virtualHeight = 888;
 	/*
 	 * Field
 	 */
@@ -39,8 +37,17 @@ public class FightActivity extends WCMActivity{
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 	
+		
+//		Display display = getWindowManager().getDefaultDisplay();
+//		Point size = new Point();
+//		display.getSize(size);
+//		int width = size.x;
+//		int height = size.y;
+		
+		//asus padfone 1 width: 540, height:888
+		
 		mEngine = new Engine(this);
-		mEngine.setScreenPolicy(new MeasureRatioScreenPolicy(480,720, true));
+		mEngine.setScreenPolicy(new MeasureRatioScreenPolicy(virtualWidth,virtualHeight, true));
 		//setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		setContentView();
 //		
@@ -79,7 +86,7 @@ public class FightActivity extends WCMActivity{
 		Bitmap bitmap;
 	    bitmap=((BitmapDrawable)getResources().getDrawable(R.drawable.bg_common_5_6_7)).getBitmap();
 	    
-	    WCMBitmap wb = new WCMBitmap(mEngine, bitmap, 480, 720);
+	    WCMBitmap wb = new WCMBitmap(mEngine, bitmap, virtualWidth, virtualHeight);
 		//bitmap = BitmapFactory.decodeResource(getResources(), ytwhyc.wcm.wcmengine.R.drawable.bg_common_5_6_7);
 		Scene bg = new Scene(mEngine, wb, 0,0);
 	    
