@@ -19,7 +19,7 @@ public class BitmapEntity extends AEntitiy {
 	
 	protected WCMBitmap mWCMBitmap;
 	
-	protected int mPositionX,mPositionY;
+	
 	
 	/*
 	 * Constructor

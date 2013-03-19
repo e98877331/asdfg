@@ -19,6 +19,15 @@ public abstract class BaseScreenPolicy {
 		return wscale;
 	}
 	
+	public int getVirtualX(int pX)
+	{
+		return (int)(pX*wscale);
+	}
+	
+	public int getVirtualY(int pY)
+	{
+		return (int)(pY*hscale);
+	}
 	
 	public enum layoutParamsType {LAYOUT_CENTER};
 	public abstract void onMeasure(WCMSurfaceView pView,final int pWidthMeasureSpec, final int pHeightMeasureSpec);

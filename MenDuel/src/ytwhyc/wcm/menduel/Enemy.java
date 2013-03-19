@@ -23,8 +23,8 @@ WCMBitmap mNormalBitmap;
 		
 		mNormalBitmap = pWCMBitmap;
 		
-		this.setUpdater(new Updater(0.01f) {
-			int diff = -4;
+		this.setUpdater(new Updater(0.005f) {
+			int diff = -3;
 			@Override
 			public void doUpdate() {
 				// TODO Auto-generated method stub
