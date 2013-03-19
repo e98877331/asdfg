@@ -2,11 +2,8 @@ package ytwhyc.wcm.entity;
 
 import ytwhyc.wcm.engine.Engine;
 import ytwhyc.wcm.wcmengine.bitmap.WCMBitmap;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Rect;
+import android.graphics.Matrix;
 
 
 public class BitmapEntity extends AEntitiy {
@@ -53,8 +50,13 @@ public class BitmapEntity extends AEntitiy {
 		// TODO Auto-generated method stub
 	    if(mWCMBitmap == null)
 	    	return;
-		
-		pCanvas.drawBitmap(mWCMBitmap.getBitmap(), mPositionX*mEngine.getScreenPolicy().wscale, mPositionY*mEngine.getScreenPolicy().hscale, null);   
+	    Matrix rotator = new Matrix();
+	    rotator.postRotate(45);
+	    rotator.postTranslate(mPositionX*mEngine.getScreenPolicy().wscale, mPositionY*mEngine.getScreenPolicy().hscale);
+	    pCanvas.drawBitmap(mWCMBitmap.getBitmap(), rotator, null);
+	    
+	    
+		//pCanvas.drawBitmap(mWCMBitmap.getBitmap(), mPositionX*mEngine.getScreenPolicy().wscale, mPositionY*mEngine.getScreenPolicy().hscale, null);   
 		//pCanvas.drawbit
 
 		

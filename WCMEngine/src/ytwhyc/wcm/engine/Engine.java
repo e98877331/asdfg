@@ -65,7 +65,7 @@ public class Engine {
 	{
 		if(mScene != null)
 		{
-			mScene.draw(pCanvas);
+			mScene.drawAll(pCanvas);
 		}
 	}
 	

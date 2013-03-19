@@ -34,20 +34,19 @@ public class Scene extends BitmapEntity {
 	 * overridefieldes
 	 */
 
-	@Override
-	public void draw(Canvas pCanvas) {
-		// TODO Auto-generated method stub
+	
+	public void drawAll(Canvas pCanvas)
+	{
 		//super.draw(pCanvas);
 		
 		//draw self
-		pCanvas.drawBitmap(mWCMBitmap.getBitmap(), mPositionX, mPositionY, null);
+		draw(pCanvas);
 		
 		//draw childs
 		for(int i = 0 ; i< childs.size(); i++)
 		{
 			childs.get(i).draw(pCanvas);
 		}
-		
 		
 	}
 	
