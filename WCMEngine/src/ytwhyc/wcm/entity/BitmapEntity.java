@@ -45,6 +45,7 @@ public class BitmapEntity extends AEntitiy {
     /*
      * Override methods
      */
+	
     
 	@Override
 	public void draw(Canvas pCanvas) {
