@@ -4,6 +4,7 @@ import ytwhyc.wcm.engine.Engine;
 import ytwhyc.wcm.wcmengine.bitmap.WCMBitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.view.ViewGroup.MarginLayoutParams;
 
 
 public class BitmapEntity extends AEntitiy {
@@ -16,8 +17,12 @@ public class BitmapEntity extends AEntitiy {
 	
 	protected WCMBitmap mWCMBitmap;
 	
+	
 	//for drawing translation
 	protected Matrix matrix = new Matrix();
+	float mRotateDegree =0;
+	float mRotateCenterX,mRotateCenterY;
+	float mScaleX =1,mScaleY =1;
 	
 	/*
 	 * Constructor
@@ -28,7 +33,7 @@ public class BitmapEntity extends AEntitiy {
 		mEngine = pEngine;
 		mPositionX = pX;
 		mPositionY = pY;
-	   
+	//    setPosition(pX, pY);
 		mWCMBitmap = pBitmap;
 	   
 	}
@@ -52,10 +57,12 @@ public class BitmapEntity extends AEntitiy {
 		// TODO Auto-generated method stub
 	    if(mWCMBitmap == null)
 	    	return;
-	    Matrix rotator = new Matrix();
+	    
+	  //  Matrix rotator = new Matrix();
 	   // rotator.postRotate(45);
-	    rotator.postTranslate(mPositionX*mEngine.getScreenPolicy().wscale, mPositionY*mEngine.getScreenPolicy().hscale);
-	    pCanvas.drawBitmap(mWCMBitmap.getBitmap(), rotator, null);
+	   // rotator.postTranslate(mPositionX*mEngine.getScreenPolicy().wscale, mPositionY*mEngine.getScreenPolicy().hscale);
+	    preDraw();
+	    pCanvas.drawBitmap(mWCMBitmap.getBitmap(), matrix, null);
 	    
 	    
 		//pCanvas.drawBitmap(mWCMBitmap.getBitmap(), mPositionX*mEngine.getScreenPolicy().wscale, mPositionY*mEngine.getScreenPolicy().hscale, null);   
@@ -71,15 +78,35 @@ public class BitmapEntity extends AEntitiy {
 	/*
 	 * Functions
 	 */
-    
+    //handling draw matrix
+	public void preDraw()
+	{
+		matrix.reset();
+		matrix.postScale(mScaleX, mScaleY);
+	   matrix.postRotate(mRotateDegree,mRotateCenterX,mRotateCenterY);
+	   matrix.postTranslate(mPositionX*mEngine.getScreenPolicy().wscale, mPositionY*mEngine.getScreenPolicy().hscale);
+	   
+	   
+	}
+	
+	public void setPosition(int x ,int y)
+	{
+		mPositionX = x;
+		mPositionY = y;
+		//matrix.postTranslate(x*mEngine.getScreenPolicy().wscale, y*mEngine.getScreenPolicy().hscale);
+	}
+	
     public void setRotate(float degree,float centerX,float centerY)
     {
-    	matrix.postRotate(degree, centerX,centerY);
+    	//matrix.postRotate(degree, centerX,centerY);
+    	mRotateDegree = degree;
     }
     
     public void setScale(float scaleX,float scaleY)
     {
-    	matrix.postScale(scaleX, scaleY);
+    	mScaleX = scaleX;
+    	mScaleY = scaleY;
+    	//matrix.postScale(scaleX, scaleY);
     }
     
     public void setNoMorph()

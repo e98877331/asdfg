@@ -7,7 +7,7 @@ import android.graphics.Canvas;
 public abstract class AEntitiy {
 
 	Updater mUpdater;
-	protected int mPositionX,mPositionY;
+	public int mPositionX,mPositionY;
 	
 	public abstract void draw(Canvas pCanvas);
 
