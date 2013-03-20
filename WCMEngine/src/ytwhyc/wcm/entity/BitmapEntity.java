@@ -16,7 +16,8 @@ public class BitmapEntity extends AEntitiy {
 	
 	protected WCMBitmap mWCMBitmap;
 	
-	
+	//for drawing translation
+	protected Matrix matrix = new Matrix();
 	
 	/*
 	 * Constructor
@@ -51,7 +52,7 @@ public class BitmapEntity extends AEntitiy {
 	    if(mWCMBitmap == null)
 	    	return;
 	    Matrix rotator = new Matrix();
-	    rotator.postRotate(45);
+	   // rotator.postRotate(45);
 	    rotator.postTranslate(mPositionX*mEngine.getScreenPolicy().wscale, mPositionY*mEngine.getScreenPolicy().hscale);
 	    pCanvas.drawBitmap(mWCMBitmap.getBitmap(), rotator, null);
 	    
@@ -70,7 +71,21 @@ public class BitmapEntity extends AEntitiy {
 	 * Functions
 	 */
     
+    public void setRotate(float degree,float centerX,float centerY)
+    {
+    	matrix.postRotate(degree, centerX,centerY);
+    }
     
+    public void setScale(float scaleX,float scaleY)
+    {
+    	matrix.postScale(scaleX, scaleY);
+    }
+    
+    public void setNoMorph()
+    {
+    	matrix.reset();
+    }
+	
     public int getWidth()
     {
     	return mWCMBitmap.getWidth();
