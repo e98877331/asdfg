@@ -24,17 +24,16 @@ WCMBitmap mNormalBitmap;
 		mNormalBitmap = pWCMBitmap;
 		
 
-		this.setUpdater(new Updater(0.005f) {
-			int diff = -3;
+		this.setUpdater(new Updater(0.00001f) {
+			int diff = -1;
 			float rotate = 0;
 			@Override
 			public void doUpdate() {
 				// TODO Auto-generated method stub
+				
+				setPosition(mPositionX += diff, mPositionY);
+				setRotate(rotate+= 0.2, getWidth()/2, getHeight()/2);
 
-				mPositionX += diff;
-				mPositionY += diff;
-				setRotate(rotate++, getWidth()/2, getHeight()/2);
-				//setPosition(mPositionX+diff,mPositionY+diff);
 				if( mPositionX < 0 || mPositionX > 400)
 				{
 					diff = -diff;

@@ -83,6 +83,7 @@ public class BitmapEntity extends AEntitiy {
 	{
 		matrix.reset();
 		matrix.postScale(mScaleX, mScaleY);
+		
 	   matrix.postRotate(mRotateDegree,mRotateCenterX,mRotateCenterY);
 	   matrix.postTranslate(mPositionX*mEngine.getScreenPolicy().wscale, mPositionY*mEngine.getScreenPolicy().hscale);
 	   
@@ -99,6 +100,9 @@ public class BitmapEntity extends AEntitiy {
     public void setRotate(float degree,float centerX,float centerY)
     {
     	//matrix.postRotate(degree, centerX,centerY);
+    	
+    	mRotateCenterX = centerX;
+    	mRotateCenterY = centerY;
     	mRotateDegree = degree;
     }
     
@@ -109,7 +113,7 @@ public class BitmapEntity extends AEntitiy {
     	//matrix.postScale(scaleX, scaleY);
     }
     
-    public void setNoMorph()
+    public void setMatrixIdentity()
     {
     	matrix.reset();
     }

@@ -90,7 +90,7 @@ public class FightActivity extends WCMActivity{
 		//bitmap = BitmapFactory.decodeResource(getResources(), ytwhyc.wcm.wcmengine.R.drawable.bg_common_5_6_7);
 		Scene bg = new Scene(mEngine, wb, 0,0);
 	    
-		bitmap=((BitmapDrawable)getResources().getDrawable(R.drawable.ic_launcher)).getBitmap();
+		//bitmap=((BitmapDrawable)getResources().getDrawable(R.drawable.ic_launcher)).getBitmap();
 		WCMBitmap oBitmap = new WCMBitmap(mEngine, bitmap, 200, 300);
 		
 		//BitmapEntity testObject = new BitmapEntity(mEngine,bitmap,50,50,50,50);
