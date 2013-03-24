@@ -45,7 +45,7 @@ WCMBitmap mNormalBitmap;
 				if(hitting)
 				{
 					tickCounter++;
-				    if(tickCounter  == 10)
+				    if(tickCounter  == 1000)
 				    {
 				    	hitting = false;
 				    	mWCMBitmap = mNormalBitmap;

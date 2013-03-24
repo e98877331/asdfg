@@ -26,6 +26,7 @@ public class FightActivity extends WCMActivity{
 	Engine mEngine;
 	WCMSurfaceView mSurfaceView;	
 	
+	WCMBitmap wbg,wenemy,wenemyOnHit,wenemyLife;
 	
 	Enemy mEnemy;
 	/*
@@ -57,7 +58,25 @@ public class FightActivity extends WCMActivity{
 
 	}
 	
-
+	@Override
+	public void onResourceCreate() {
+		// TODO Auto-generated method stub
+		super.onResourceCreate();
+		
+		Bitmap bitmap;
+		bitmap=((BitmapDrawable)getResources().getDrawable(R.drawable.bg_common_5_6_7)).getBitmap();
+		wbg =new WCMBitmap(mEngine, bitmap, virtualWidth, virtualHeight);
+		
+		wenemyOnHit = new WCMBitmap(mEngine, bitmap, 200, 300);
+		
+		bitmap=((BitmapDrawable)getResources().getDrawable(R.drawable.ic_launcher)).getBitmap();
+		wenemy = new WCMBitmap(mEngine, bitmap, 200, 300);
+		wenemyLife = new WCMBitmap(mEngine, bitmap, virtualWidth, virtualHeight);
+		
+		
+		
+	}
+	
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
@@ -76,39 +95,15 @@ public class FightActivity extends WCMActivity{
 	@Override
 	public void onSurfaceReady() {
 		// TODO Auto-generated method stub
-		
-		Bitmap bitmap;
-	    bitmap=((BitmapDrawable)getResources().getDrawable(R.drawable.bg_common_5_6_7)).getBitmap();
+
+		Scene bg = new Scene(mEngine, wbg, 0,0);
 	    
-	    WCMBitmap wb = new WCMBitmap(mEngine, bitmap, virtualWidth, virtualHeight);
-		//bitmap = BitmapFactory.decodeResource(getResources(), ytwhyc.wcm.wcmengine.R.drawable.bg_common_5_6_7);
-		Scene bg = new Scene(mEngine, wb, 0,0);
-	    
-		bitmap=((BitmapDrawable)getResources().getDrawable(R.drawable.ic_launcher)).getBitmap();
-		WCMBitmap oBitmap = new WCMBitmap(mEngine, bitmap, 200, 300);
-		
-		//BitmapEntity testObject = new BitmapEntity(mEngine,bitmap,50,50,50,50);
-		
-//		ArrayList<BitmapEntity> tests = new ArrayList<BitmapEntity>();
-//		
-//		for(int i  = 0 ;i < 10000 ;i ++)
-//		{
-//			tests.add(new BitmapEntity(mEngine, oBitmap, 480, 20*i));
-//			tests.add(new BitmapEntity(mEngine, oBitmap, 10*i,680-(20*i)));
-//			bg.addChild(tests.get(i));	
-//		}
-	
-		
-		
-		
-		mEnemy = new Enemy(mEngine, oBitmap, 240, 360);
-		
-		 bitmap=((BitmapDrawable)getResources().getDrawable(R.drawable.bg_common_5_6_7)).getBitmap();
-			WCMBitmap ohit = new WCMBitmap(mEngine, bitmap, 200, 300);
-		mEnemy.setHurtBitmap(ohit);
+		mEnemy = new Enemy(mEngine, wenemy, 240, 360);
+		mEnemy.setHurtBitmap(wenemyOnHit);
 		//mEnemy.setHurtBitmap(pB);
 		mEngine.registTouchable(mEnemy);
-	bg.addChild(mEnemy);
+	    
+		bg.addChild(mEnemy);
 		mEngine.setScene(bg);
 		
 	}

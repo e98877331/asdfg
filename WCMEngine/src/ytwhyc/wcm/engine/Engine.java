@@ -104,9 +104,9 @@ public class Engine {
 	
 	public void onSurfaceReady()
 	{
-		
-		wrContext.get().onSurfaceReady();
 		wrContext.get().onResourceCreate();
+		wrContext.get().onSurfaceReady();
+		
 		
 		mUpdateThread = new UpdateThread();
 		mUpdateThread.start();

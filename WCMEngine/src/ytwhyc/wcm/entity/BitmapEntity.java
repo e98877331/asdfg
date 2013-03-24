@@ -1,5 +1,8 @@
 package ytwhyc.wcm.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ytwhyc.wcm.engine.Engine;
 import ytwhyc.wcm.wcmengine.bitmap.WCMBitmap;
 import android.graphics.Canvas;
@@ -17,6 +20,8 @@ public class BitmapEntity extends AEntitiy {
 	
 	protected WCMBitmap mWCMBitmap;
 	
+	
+	List<BitmapEntity> childs = new ArrayList<BitmapEntity>();
 	
 	//for drawing translation
 	protected Matrix matrix = new Matrix();
@@ -130,6 +135,42 @@ public class BitmapEntity extends AEntitiy {
     }
 	
     
+    
+	public void drawAll(Canvas pCanvas)
+	{
+		//super.draw(pCanvas);
+		
+		//draw self
+		draw(pCanvas);
+		
+		//draw childs
+		for(int i = 0 ; i< childs.size(); i++)
+		{
+			childs.get(i).draw(pCanvas);
+		}
+		
+	}
+	
+	public void updateAll(long timePassBy)
+	{
+		update(timePassBy);
+		for(int i= 0;i < childs.size();i++)
+		{
+			childs.get(i).update(timePassBy);
+		}
+		
+	}
+
+
+	/*
+     *  Functions
+     */
+
+	public void addChild(BitmapEntity pChild)
+	{
+		childs.add(pChild);
+	}
+	
     
 
 

@@ -16,7 +16,7 @@ public class Scene extends BitmapEntity {
 	 */
 	
 	
-	List<BitmapEntity> childs;
+
 	
 	/*
 	 * Constructor
@@ -26,7 +26,7 @@ public class Scene extends BitmapEntity {
 		super(pEngine, pWCMBitmap, pX, pY);
 		// TODO Auto-generated constructor stub
 		
-		childs = new ArrayList<BitmapEntity>();
+		//childs = new ArrayList<BitmapEntity>();
 		
 	}
 
@@ -35,40 +35,6 @@ public class Scene extends BitmapEntity {
 	 */
 
 	
-	public void drawAll(Canvas pCanvas)
-	{
-		//super.draw(pCanvas);
-		
-		//draw self
-		draw(pCanvas);
-		
-		//draw childs
-		for(int i = 0 ; i< childs.size(); i++)
-		{
-			childs.get(i).draw(pCanvas);
-		}
-		
-	}
-	
-	public void updateAll(long timePassBy)
-	{
-		update(timePassBy);
-		for(int i= 0;i < childs.size();i++)
-		{
-			childs.get(i).update(timePassBy);
-		}
-		
-	}
 
-
-	/*
-     *  Functions
-     */
-
-	public void addChild(BitmapEntity pChild)
-	{
-		childs.add(pChild);
-	}
-	
 
 }
