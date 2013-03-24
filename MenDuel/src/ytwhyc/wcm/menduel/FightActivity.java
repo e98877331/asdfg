@@ -7,12 +7,9 @@ import ytwhyc.wcm.entity.Scene;
 import ytwhyc.wcm.surfaceview.WCMSurfaceView;
 import ytwhyc.wcm.wcmengine.activity.WCMActivity;
 import ytwhyc.wcm.wcmengine.bitmap.WCMBitmap;
-import android.R.menu;
 import android.graphics.Bitmap;
-import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.MotionEvent;
 import android.view.Window;
 
@@ -29,6 +26,7 @@ public class FightActivity extends WCMActivity{
 	WCMBitmap wbg,wenemy,wenemyOnHit,wenemyLife;
 	
 	Enemy mEnemy;
+	PowerBar mPowerbar;
 	/*
 	 * Override Methods
 	 */
@@ -99,10 +97,14 @@ public class FightActivity extends WCMActivity{
 		Scene bg = new Scene(mEngine, wbg, 0,0);
 	    
 		mEnemy = new Enemy(mEngine, wenemy, 240, 360);
+		
+		mPowerbar = new PowerBar(mEngine, null, 0, 0);
+		
+		mEnemy.mPowerbar = mPowerbar;
 		mEnemy.setHurtBitmap(wenemyOnHit);
 		//mEnemy.setHurtBitmap(pB);
 		mEngine.registTouchable(mEnemy);
-	    
+	    bg.addChild(mPowerbar);
 		bg.addChild(mEnemy);
 		mEngine.setScene(bg);
 		

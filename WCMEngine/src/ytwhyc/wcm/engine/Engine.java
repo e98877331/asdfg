@@ -8,7 +8,7 @@ import ytwhyc.wcm.entity.Scene;
 import ytwhyc.wcm.surfaceview.WCMSurfaceView;
 import ytwhyc.wcm.wcmengine.activity.WCMActivity;
 import ytwhyc.wcm.wcmengine.touchable.ITouchable;
-import ytwhyc.wcm.wcmengine.touchable.TouchableSprite;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
@@ -42,6 +42,12 @@ public class Engine {
 	/*
 	 * Functions
 	 */
+	
+	public Context getContext()
+	{
+		return wrContext.get();
+	}
+	
 	public void setDrawingView(WCMSurfaceView pView)
 	{
        mSurfaceView = pView;

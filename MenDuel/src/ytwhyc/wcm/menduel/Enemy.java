@@ -13,6 +13,7 @@ public class Enemy extends TouchableSprite {
 	int tickCounter;
 	
 	boolean hitting;
+	PowerBar mPowerbar;
 	
 WCMBitmap  mHurtBitmap;
 WCMBitmap mNormalBitmap;
@@ -78,6 +79,7 @@ WCMBitmap mNormalBitmap;
 		{
 			//mEnemy.onHit();
     	onHit();
+    	mPowerbar.addPower();
 		}
     }
     

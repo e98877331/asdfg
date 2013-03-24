@@ -146,7 +146,7 @@ public class BitmapEntity extends AEntitiy {
 		//draw childs
 		for(int i = 0 ; i< childs.size(); i++)
 		{
-			childs.get(i).draw(pCanvas);
+			childs.get(i).drawAll(pCanvas);
 		}
 		
 	}
@@ -156,7 +156,7 @@ public class BitmapEntity extends AEntitiy {
 		update(timePassBy);
 		for(int i= 0;i < childs.size();i++)
 		{
-			childs.get(i).update(timePassBy);
+			childs.get(i).updateAll(timePassBy);
 		}
 		
 	}
