@@ -15,6 +15,15 @@ public abstract class AEntitiy {
 	
 	public abstract void draw(Canvas pCanvas);
 
+	public int getX()
+	{
+		return mPositionX;
+	}
+	
+	public int getY()
+	{
+		return mPositionY;
+	}
 	
 	public void addUpdater(Updater pUpdater)
 	{

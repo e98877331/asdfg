@@ -1,12 +1,16 @@
 package ytwhyc.wcm.engine;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import ytwhyc.wcm.entity.Scene;
 import ytwhyc.wcm.surfaceview.WCMSurfaceView;
 import ytwhyc.wcm.wcmengine.activity.WCMActivity;
+import ytwhyc.wcm.wcmengine.touchable.ITouchable;
+import ytwhyc.wcm.wcmengine.touchable.TouchableSprite;
 import android.graphics.Canvas;
-import android.util.Log;
+import android.view.MotionEvent;
 
 public class Engine {
 	
@@ -20,6 +24,8 @@ public class Engine {
 	UpdateThread mUpdateThread;
 	WeakReference<WCMActivity> wrContext;
 	WCMSurfaceView mSurfaceView;
+	
+	ArrayList<ITouchable> touchableList = new ArrayList<ITouchable>();
 	
 	
 	public BaseScreenPolicy mScreenPolicy;
@@ -51,6 +57,22 @@ public class Engine {
 		return mScreenPolicy;
 	}
 	
+	public void registTouchable(ITouchable touchable)
+	{
+		touchableList.add(touchable);
+	}
+	public void unregistTouchable(ITouchable touchable)
+	{
+		touchableList.remove(touchable);
+	}
+	
+	public void unregistAllTouchable()
+	{
+		touchableList = new ArrayList<ITouchable>();
+	}
+	
+	
+	
 	public void onPause()
 	{
 		mUpdateThread.pause();
@@ -61,12 +83,23 @@ public class Engine {
     	mScene = pScene;
     }
 	
+    
+    
 	public void draw(Canvas pCanvas)
 	{
 		if(mScene != null)
 		{
 			mScene.drawAll(pCanvas);
 		}
+	}
+	
+	public void onTouch(MotionEvent event)
+	{
+	    Iterator<ITouchable> it = touchableList.iterator();
+	    while(it.hasNext())
+	    {
+	    	it.next().onTouch(event);
+	    }
 	}
 	
 	public void onSurfaceReady()

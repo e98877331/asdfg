@@ -7,6 +7,7 @@ import ytwhyc.wcm.entity.Scene;
 import ytwhyc.wcm.surfaceview.WCMSurfaceView;
 import ytwhyc.wcm.wcmengine.activity.WCMActivity;
 import ytwhyc.wcm.wcmengine.bitmap.WCMBitmap;
+import android.R.menu;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
@@ -56,14 +57,7 @@ public class FightActivity extends WCMActivity{
 
 	}
 	
-	@Override
-	public void onResourceCreate() {
-		// TODO Auto-generated method stub
-		super.onResourceCreate();
-		
-		
-	}
-	
+
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
@@ -113,7 +107,7 @@ public class FightActivity extends WCMActivity{
 			WCMBitmap ohit = new WCMBitmap(mEngine, bitmap, 200, 300);
 		mEnemy.setHurtBitmap(ohit);
 		//mEnemy.setHurtBitmap(pB);
-		
+		mEngine.registTouchable(mEnemy);
 	bg.addChild(mEnemy);
 		mEngine.setScene(bg);
 		
@@ -126,11 +120,8 @@ public class FightActivity extends WCMActivity{
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		// TODO Auto-generated method stub
-		if(event.getAction() == MotionEvent.ACTION_DOWN)
-		{
-			mEnemy.onHit();
-			//mEngine.onPause();
-		}
+
+			mEngine.onTouch(event);
 		
 		return super.onTouchEvent(event);
 	}

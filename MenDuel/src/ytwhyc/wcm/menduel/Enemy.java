@@ -3,10 +3,12 @@ package ytwhyc.wcm.menduel;
 import ytwhyc.wcm.engine.Engine;
 import ytwhyc.wcm.entity.Sprite;
 import ytwhyc.wcm.wcmengine.bitmap.WCMBitmap;
+import ytwhyc.wcm.wcmengine.touchable.TouchableSprite;
 import ytwhyc.wcm.wcmengine.updater.Updater;
 import android.util.Log;
+import android.view.MotionEvent;
 
-public class Enemy extends Sprite {
+public class Enemy extends TouchableSprite {
 
 	int tickCounter;
 	
@@ -68,7 +70,16 @@ WCMBitmap mNormalBitmap;
     	mWCMBitmap = mHurtBitmap;
     }
 	
-    
+    @Override
+    public void touch(MotionEvent event) {
+    	// TODO Auto-generated method stub
+    	
+		if(event.getAction() == MotionEvent.ACTION_DOWN)
+		{
+			//mEnemy.onHit();
+    	onHit();
+		}
+    }
     
 
 }
