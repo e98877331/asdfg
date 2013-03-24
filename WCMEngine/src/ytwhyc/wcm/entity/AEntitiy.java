@@ -1,26 +1,33 @@
 package ytwhyc.wcm.entity;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import ytwhyc.wcm.wcmengine.updater.Updater;
 import android.graphics.Canvas;
 
 
 public abstract class AEntitiy {
 
-	Updater mUpdater;
+	ArrayList<Updater> mUpdaterList = new ArrayList<Updater>();
+	
 	public int mPositionX,mPositionY;
 	
 	public abstract void draw(Canvas pCanvas);
 
 	
-	public void setUpdater(Updater pUpdater)
+	public void addUpdater(Updater pUpdater)
 	{
-		mUpdater = pUpdater;
+		mUpdaterList.add(pUpdater);
 	}
 	public void update(long timePassBy)
 	{
-		if(mUpdater != null)
+		
+		Iterator<Updater> it =  mUpdaterList.iterator();
+		
+		while(it.hasNext())
 		{
-			mUpdater.update(timePassBy);
+			it.next().update(timePassBy);
 		}
 	}
 	

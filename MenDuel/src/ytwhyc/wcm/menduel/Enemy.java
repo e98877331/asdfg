@@ -24,7 +24,7 @@ WCMBitmap mNormalBitmap;
 		mNormalBitmap = pWCMBitmap;
 		
 
-		this.setUpdater(new Updater(0.00001f) {
+		this.addUpdater(new Updater(0.00001f) {
 			int diff = -1;
 			float rotate = 0;
 			@Override
