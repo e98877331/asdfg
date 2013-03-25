@@ -78,6 +78,15 @@ public class Engine {
 	}
 	
 	
+	public void onResume()
+	{
+		if(mUpdateThread != null)
+		{
+		mUpdateThread = new UpdateThread();
+		mUpdateThread.start();
+		}
+	}
+	
 	
 	public void onPause()
 	{

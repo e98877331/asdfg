@@ -65,15 +65,25 @@ public class FightActivity extends WCMActivity{
 		bitmap=((BitmapDrawable)getResources().getDrawable(R.drawable.bg_common_5_6_7)).getBitmap();
 		wbg =new WCMBitmap(mEngine, bitmap, virtualWidth, virtualHeight);
 		
-		wenemyOnHit = new WCMBitmap(mEngine, bitmap, 200, 300);
+		wenemyOnHit = new WCMBitmap(mEngine, bitmap, 300, 600);
 		
 		bitmap=((BitmapDrawable)getResources().getDrawable(R.drawable.ic_launcher)).getBitmap();
-		wenemy = new WCMBitmap(mEngine, bitmap, 200, 300);
+		wenemy = new WCMBitmap(mEngine, bitmap, 300, 600);
 		wenemyLife = new WCMBitmap(mEngine, bitmap, virtualWidth, virtualHeight);
 		
 		
 		
 	}
+
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
+		mEngine.onResume();
+	}
+	
 	
 	@Override
 	protected void onPause() {
@@ -96,7 +106,9 @@ public class FightActivity extends WCMActivity{
 
 		Scene bg = new Scene(mEngine, wbg, 0,0);
 	    
-		mEnemy = new Enemy(mEngine, wenemy, 240, 360);
+		mEnemy = new Enemy(mEngine, wenemy, 0, 0);
+		mEnemy.setPosition(virtualWidth/2 - mEnemy.getWidth()/2, virtualHeight - mEnemy.getHeight());
+		
 		
 		mPowerbar = new PowerBar(mEngine, null, 0, 0);
 		
@@ -104,8 +116,8 @@ public class FightActivity extends WCMActivity{
 		mEnemy.setHurtBitmap(wenemyOnHit);
 		//mEnemy.setHurtBitmap(pB);
 		mEngine.registTouchable(mEnemy);
-	    bg.addChild(mPowerbar);
 		bg.addChild(mEnemy);
+		bg.addChild(mPowerbar);
 		mEngine.setScene(bg);
 		
 	}

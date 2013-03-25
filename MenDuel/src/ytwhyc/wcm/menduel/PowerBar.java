@@ -20,9 +20,19 @@ public class PowerBar extends Sprite{
 	public void addPower()
 	{
 		power++;
+		
+		if(power > 10)
+		{
+			removeAllChilds();
+			power = 0;
+            return;
+		}
+		
 		Bitmap bitmap =((BitmapDrawable)mEngine.getContext().getResources().getDrawable(R.drawable.ic_launcher)).getBitmap();
 		WCMBitmap wpower = new WCMBitmap(mEngine, bitmap, 20, 20);
 		BitmapEntity p = new BitmapEntity(mEngine, wpower, power * 20, 800);
 	   addChild(p);
+	   
+	   
 	}
 }

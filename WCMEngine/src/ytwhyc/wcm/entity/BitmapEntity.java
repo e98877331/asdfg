@@ -5,6 +5,7 @@ import java.util.List;
 
 import ytwhyc.wcm.engine.Engine;
 import ytwhyc.wcm.wcmengine.bitmap.WCMBitmap;
+import android.R.menu;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 
@@ -119,8 +120,9 @@ public class BitmapEntity extends Entity {
     {
     	//matrix.postRotate(degree, centerX,centerY);
     	
-    	mRotateCenterX = centerX;
-    	mRotateCenterY = centerY;
+    	mRotateCenterX = centerX * mEngine.getScreenPolicy().wscale;
+
+    	mRotateCenterY = centerY * mEngine.getScreenPolicy().hscale;
     	mRotateDegree = degree;
     }
     
