@@ -11,33 +11,12 @@ public abstract class AEntitiy {
 
 	ArrayList<Updater> mUpdaterList = new ArrayList<Updater>();
 	
-	public int mPositionX,mPositionY;
 	
 	public abstract void draw(Canvas pCanvas);
 
-	public int getX()
-	{
-		return mPositionX;
-	}
+
 	
-	public int getY()
-	{
-		return mPositionY;
-	}
-	
-	public void addUpdater(Updater pUpdater)
-	{
-		mUpdaterList.add(pUpdater);
-	}
-	public void update(long timePassBy)
-	{
-		
-		Iterator<Updater> it =  mUpdaterList.iterator();
-		
-		while(it.hasNext())
-		{
-			it.next().update(timePassBy);
-		}
-	}
+	public abstract void addUpdater(Updater pUpdater);
+	public abstract void update(long timePassBy);
 	
 }
