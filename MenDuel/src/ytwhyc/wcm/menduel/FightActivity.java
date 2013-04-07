@@ -8,10 +8,13 @@ import ytwhyc.wcm.surfaceview.WCMSurfaceView;
 import ytwhyc.wcm.wcmengine.activity.WCMActivity;
 import ytwhyc.wcm.wcmengine.bitmap.WCMBitmap;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.Window;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class FightActivity extends WCMActivity{
 
@@ -27,6 +30,9 @@ public class FightActivity extends WCMActivity{
 	
 	Enemy mEnemy;
 	PowerBar mPowerbar;
+	
+	TextView clickCounterView; 
+	
 	/*
 	 * Override Methods
 	 */
@@ -112,7 +118,8 @@ public class FightActivity extends WCMActivity{
 		
 		mPowerbar = new PowerBar(mEngine, null, 0, 0);
 		
-		mEnemy.mPowerbar = mPowerbar;
+		mEnemy.setPowerBar(mPowerbar);
+		mEnemy.setClickCounterView(clickCounterView);
 		mEnemy.setHurtBitmap(wenemyOnHit);
 		//mEnemy.setHurtBitmap(pB);
 		mEngine.registTouchable(mEnemy);
@@ -139,8 +146,26 @@ public class FightActivity extends WCMActivity{
 	{
 	 
 		mSurfaceView = new WCMSurfaceView(this,mEngine);
-		this.setContentView(mSurfaceView,mEngine.getScreenPolicy().getLayoutParams(LayoutParamsType.LAYOUT_CENTER));
+		RelativeLayout rl  = new RelativeLayout(this);
+		rl.addView(mSurfaceView,mEngine.getScreenPolicy().getLayoutParams(LayoutParamsType.LAYOUT_CENTER));
+	  	
+        addClickCounter(rl);    
+		this.setContentView(rl);
 
+		
+	}
+	
+	private void addClickCounter(RelativeLayout rl)
+	{
+		clickCounterView = new TextView(this);
+		clickCounterView.setText("hhahahah");
+		clickCounterView.setTextColor(Color.BLUE);
+		RelativeLayout.LayoutParams tvparams = new RelativeLayout.LayoutParams(200, 40);
+		tvparams.leftMargin = 50;
+		tvparams.topMargin = 60;
+		
+		rl.addView(clickCounterView,tvparams);
+		
 		
 	}
 	

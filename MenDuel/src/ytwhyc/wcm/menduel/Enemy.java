@@ -1,15 +1,15 @@
 package ytwhyc.wcm.menduel;
 
 import ytwhyc.wcm.engine.Engine;
-import ytwhyc.wcm.entity.Sprite;
 import ytwhyc.wcm.wcmengine.bitmap.WCMBitmap;
 import ytwhyc.wcm.wcmengine.touchable.TouchableSprite;
 import ytwhyc.wcm.wcmengine.updater.Updater;
-import android.util.Log;
 import android.view.MotionEvent;
+import android.widget.TextView;
 
 public class Enemy extends TouchableSprite {
-
+    TextView clickCounterView;
+    int clickCounter =0;
 	int tickCounter;
 	
 	boolean hitting;
@@ -72,7 +72,15 @@ WCMBitmap mNormalBitmap;
 	{
 		mHurtBitmap = pB;
 	}
+	public void setClickCounterView(TextView pTv)
+	{
+		clickCounterView = pTv;
+	}
 	
+	public void setPowerBar(PowerBar pP)
+	{
+		mPowerbar = pP;
+	}
     public void onHit()
     {
     	hitting = true;
@@ -88,6 +96,12 @@ WCMBitmap mNormalBitmap;
 			//mEnemy.onHit();
     	onHit();
     	mPowerbar.addPower();
+    	clickCounter++;
+    	
+    	
+    	
+    	clickCounterView.setText("Cambo:" + Integer.toString(clickCounter));
+    	
 		}
     }
     
