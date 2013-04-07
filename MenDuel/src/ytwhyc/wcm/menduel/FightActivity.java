@@ -27,7 +27,7 @@ public class FightActivity extends WCMActivity{
 	WCMSurfaceView mSurfaceView;	
 	
 	WCMBitmap wbg,wenemy,wenemyOnHit,wenemyLife;
-	
+	Bitmap bitmap,bitmapEnemy1,bitmapEnemy2;
 	Enemy mEnemy;
 	PowerBar mPowerbar;
 	
@@ -73,12 +73,12 @@ public class FightActivity extends WCMActivity{
 		
 		//wenemyOnHit = new WCMBitmap(mEngine, bitmap, 300, 600);
 		
-		bitmap=((BitmapDrawable)getResources().getDrawable(R.drawable.role2)).getBitmap();
-		wenemy = new WCMBitmap(mEngine, bitmap, 300, 600);
-		wenemyLife = new WCMBitmap(mEngine, bitmap, virtualWidth, virtualHeight);
+		bitmapEnemy1=((BitmapDrawable)getResources().getDrawable(R.drawable.role2)).getBitmap();
+		wenemy = new WCMBitmap(mEngine, bitmapEnemy1, 300, 600);
+		wenemyLife = new WCMBitmap(mEngine, bitmapEnemy1, virtualWidth, virtualHeight);
 		
-		bitmap=((BitmapDrawable)getResources().getDrawable(R.drawable.role1)).getBitmap();
-		wenemyOnHit = new WCMBitmap(mEngine, bitmap, 300, 600);
+		bitmapEnemy2=((BitmapDrawable)getResources().getDrawable(R.drawable.role1)).getBitmap();
+		wenemyOnHit = new WCMBitmap(mEngine, bitmapEnemy2, 300, 600);
 	}
 
 
