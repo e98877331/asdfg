@@ -65,14 +65,14 @@ public class FightActivity extends WCMActivity{
 		bitmap=((BitmapDrawable)getResources().getDrawable(R.drawable.bg_common_5_6_7)).getBitmap();
 		wbg =new WCMBitmap(mEngine, bitmap, virtualWidth, virtualHeight);
 		
-		wenemyOnHit = new WCMBitmap(mEngine, bitmap, 300, 600);
+		//wenemyOnHit = new WCMBitmap(mEngine, bitmap, 300, 600);
 		
-		bitmap=((BitmapDrawable)getResources().getDrawable(R.drawable.ic_launcher)).getBitmap();
+		bitmap=((BitmapDrawable)getResources().getDrawable(R.drawable.role2)).getBitmap();
 		wenemy = new WCMBitmap(mEngine, bitmap, 300, 600);
 		wenemyLife = new WCMBitmap(mEngine, bitmap, virtualWidth, virtualHeight);
 		
-		
-		
+		bitmap=((BitmapDrawable)getResources().getDrawable(R.drawable.role1)).getBitmap();
+		wenemyOnHit = new WCMBitmap(mEngine, bitmap, 300, 600);
 	}
 
 
